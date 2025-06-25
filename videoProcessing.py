@@ -1,7 +1,4 @@
 import cv2
-from torchvision.io import VideoReader
-
-
 class VideoRead:
    def __init__(self,videoPath):
       self.path = videoPath
@@ -12,7 +9,7 @@ class VideoRead:
 
    def openVideo(self):
       while True:
-         ret, frame = video.read()
+         ret, frame = self.cap.read()
          if not ret:
             break
 
@@ -28,4 +25,4 @@ class VideoRead:
 if __name__ == '__main__':
 
    video = VideoRead("video3.mp4")
-   video.show()
+   video.openVideo()
