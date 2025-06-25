@@ -9,15 +9,24 @@ def videoCapture(videoPath):
       exit()
       return None
    
+
+
+
+   
 def main():
    videoPath = "video3.mp4"
    video = videoCapture(videoPath)
 
    if video.isOpened():
       print("Video opened successfully.")
+      showVideo(video)
    else:
       print("Error opening video file.")
  
+
+
+
+
 
 if __name__ == "__main__":
    main()
