@@ -1,35 +1,31 @@
 import cv2
-
-def videoCapture(videoPath):
-   try:
-      video = cv2.VideoCapture(videoPath)
-      return video
-   except Exception as e:
-      print(f"Error: {e}")
-      exit()
-      return None
-   
+from torchvision.io import VideoReader
 
 
+class VideoRead:
+   def __init__(self,videoPath):
+      self.path = videoPath
+      self.cap = cv2.VideoCapture(self.path)
 
-   
-def main():
-   videoPath = "video3.mp4"
-   video = videoCapture(videoPath)
+      if not self.cap.isOpened():
+         raise ValueError(f"Video can't be opened: {self.path}")
 
-   if video.isOpened():
-      print("Video opened successfully.")
-      showVideo(video)
-   else:
-      print("Error opening video file.")
- 
+   def openVideo(self):
+      while True:
+         ret, frame = video.read()
+         if not ret:
+            break
 
+         cv2.imshow("Webcam", frame)
 
-
-
-
-if __name__ == "__main__":
-   main()
+         # click q for exit
+         if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+      self.cap.release()
+      cv2.destroyAllWindows()
 
 
+if __name__ == '__main__':
 
+   video = VideoRead("video3.mp4")
+   video.show()
